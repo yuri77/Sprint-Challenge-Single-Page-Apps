@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Icon } from "semantic-ui-react";
 
 export default function CharacterCard({ person }) {
-  console.log("CharCard's prop", person);
+  //console.log("CharCard's prop", person);
   const extra = (
     <a>
       <Icon name="user" />
