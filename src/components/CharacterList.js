@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from "react";
-//import axios from "axios";
+import axios from "axios";
+import CharacterCard from "./CharacterCard";
 
 export default function CharacterList() {
   const [char, setChar] = useState([]);
 
-  // useEffect(() => {
-  //   const getCharacters = () => {
-  //     axios
-  //       .get("https://rickandmortyapi.com/api/character/")
-  //       .then(response => {
-  //         console.log("characters: ", response);
-  //       })
-  //       .catch(error => {
-  //         console.log("Character fetching is currently down", error);
-  //       });
-  //   };
-  //   getCharacters();
-  // }, []);
+  useEffect(() => {
+    const getCharacters = () => {
+      axios
+        .get("https://rickandmortyapi.com/api/character/")
+        .then(response => {
+          setChar(response.data.results);
+          console.log("API Response for char package: ", response.data.results);
+        })
+        .catch(error => {
+          console.log("Character fetching is currently down", error);
+        });
+    };
+    getCharacters();
+  }, []);
 
   return (
     <section className="character-list grid-view">
-      <h2>TODO: `array.map()` over your state here!</h2>
+      {char.map(person => (
+        <CharacterCard key={person.id} person={person} />
+      ))}
+      ;
     </section>
   );
 }
